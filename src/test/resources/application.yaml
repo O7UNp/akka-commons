@@ -1,0 +1,7 @@
+application:
+  name: commons
+  package: me.xethh.libs.toolkits.akka.commons
+spring:
+  application:
+    name: ${application.name}
+

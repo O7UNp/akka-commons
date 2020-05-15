@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>dev.xethh.libs.toolkits</groupId>
+    <artifactId>base</artifactId>
+    <version>1.0.2</version>
+  </parent>
+
+  <groupId>dev.xethh.libs.toolkits.akka</groupId>
+  <artifactId>commons${build.scala.version.artifact}</artifactId>
+  <version>1.0.0</version>
+
+  <name>toolkits-akka-commons</name>
+
+  <url>https://github.com/O7UNp/libs-toolkits-tooakka-commons</url>
+  <description>Library of commonly used akka tools</description>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:git:git@github.com:O7UNp/libs-toolkits-tooakka-commons.git</connection>
+    <developerConnection>scm:git:git@github.com:O7UNp/libs-toolkits-tooakka-commons.git</developerConnection>
+    <url>https://github.com/O7UNp/libs-toolkits-tooakka-commons</url>
+  </scm>
+
+  <profiles>
+    <profile>
+      <id>scala</id>
+      <properties>
+        <build.scala.version>2.13.0</build.scala.version>
+        <build.scala.version.major>_2.13</build.scala.version.major>
+        <build.scala.version.artifact/>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>scala_12</id>
+      <properties>
+        <build.scala.version>2.12.10</build.scala.version>
+        <build.scala.version.major>_2.12</build.scala.version.major>
+        <build.scala.version.artifact>_2.12</build.scala.version.artifact>
+      </properties>
+    </profile>
+    <profile>
+      <id>scala_13</id>
+      <properties>
+        <build.scala.version>2.13.0</build.scala.version>
+        <build.scala.version.major>_2.13</build.scala.version.major>
+        <build.scala.version.artifact>_2.13</build.scala.version.artifact>
+      </properties>
+    </profile>
+  </profiles>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh_xethh_dev</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh_xethh_dev</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+  <!--Add SCM and distribution managemetn end-->
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <test.version>4.11</test.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>me.xethh.libs.toolkits</groupId>
+      <artifactId>commons</artifactId>
+      <version>2.1.6</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${test.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Spring boot dependencies start-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>me.xethh.utils</groupId>
+      <artifactId>DateUtils</artifactId>
+    </dependency>
+    <!-- Spring boot dependencies start-->
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.typesafe.akka/akka-actor -->
+    <dependency>
+      <groupId>com.typesafe.akka</groupId>
+      <artifactId>akka-actor${build.scala.version.major}</artifactId>
+      <version>2.5.25</version>
+    </dependency>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${build.scala.version}</version>
+    </dependency>
+
+  </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>me.xethh.libs.toolkits</groupId>
+        <artifactId>libs-bom</artifactId>
+        <version>1.5</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <sourceDirectory>src/main/sources</sourceDirectory>
+    <testSourceDirectory>src/test/sources</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+          <groupId>net.alchim31.maven</groupId>
+          <artifactId>scala-maven-plugin</artifactId>
+          <version>4.4.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>scala-compile-first</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-source</goal>
+              <goal>compile</goal>
+              <goal>doc-jar</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>scala-test-compile</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
