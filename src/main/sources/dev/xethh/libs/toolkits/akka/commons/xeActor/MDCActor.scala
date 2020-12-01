@@ -2,7 +2,7 @@ package dev.xethh.libs.toolkits.akka.commons.xeActor
 
 import java.util
 
-import me.xethh.libs.toolkits.threadLocal.{XEContext, XEContextRaw}
+import dev.xethh.libs.toolkits.commons.threadLocal.XEContextRaw
 import org.slf4j.MDC
 
 trait MDCActorMessage extends ActorMessage {

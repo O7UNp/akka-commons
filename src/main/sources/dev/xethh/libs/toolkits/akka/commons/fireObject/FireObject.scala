@@ -2,7 +2,8 @@ package dev.xethh.libs.toolkits.akka.commons.fireObject
 
 import java.util.Date
 
-import me.xethh.utils.dateManipulation.DateFactory
+import me.xethh.utils.dateUtils.D
+import me.xethh.utils.dateUtils.dateFactory.DateFactory
 
 import scala.concurrent.duration.Duration
 
@@ -21,7 +22,7 @@ class FirstFireObject[S](duration: Duration) extends FireObject[S] {
       lastTrigger=Some((new Date, signal))
       Some(lastTrigger.get._2)
     } else{
-      if(DateFactory.from(lastTrigger.get._1).addMS(duration.toMillis.intValue()).before(DateFactory.now())){
+      if(D.dt().from(lastTrigger.get._1).addMS(duration.toMillis.intValue()).before(D.dt.now())){
         lastTrigger=Some(new Date, signal)
         Some(lastTrigger.get._2)
       }
