@@ -10,10 +10,6 @@
 
 ## JDBC Extension
 
-Imports
-```scala
-import dev.xethh.libs.toolkits.akka.commons.jdbcExtension.ext._
-```
 
 ### JDBCConnection extension
 ```scala

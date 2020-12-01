@@ -2,10 +2,12 @@ package dev.xethh.libs.toolkits.akka.commons
 
 import java.sql.{Connection, ResultSet}
 
+import scala.language.implicitConversions
+
 package object jdbcExtension {
   object ext{
-    implicit def conn2Connection(connection:Connection)=new ConnectionExtension(connection)
-    implicit def rs2RsUtils(rs:ResultSet)=new ResultSetUtils(rs)
+    implicit def conn2Connection(connection:Connection): ConnectionExtension =new ConnectionExtension(connection)
+    implicit def rs2RsUtils(rs:ResultSet): ResultSetUtils =new ResultSetUtils(rs)
   }
 
   import java.sql.{Connection, PreparedStatement, ResultSet}
@@ -65,13 +67,6 @@ package object jdbcExtension {
       connection.close()
       rs
     }
-
-  }
-
-  object ResultSetUtils{
-    implicit def resultSet2ResultSetUtils(resultSet: ResultSet) : ResultSetUtils = new ResultSetUtils(resultSet)
-
-    implicit def q(connection: Connection)= new ConnectionExtension(connection)
 
   }
 }
